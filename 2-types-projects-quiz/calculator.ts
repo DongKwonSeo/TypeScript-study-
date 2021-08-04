@@ -9,8 +9,8 @@ console.log(calculate("remainder", 5, 2)); // 1
 
 type command = "add" | "substract" | "multiply" | "divide" | "remainder";
 
-function calculate(command: command, a: number, b: number): number {
-  switch (command) {
+function calculate(show: command, a: number, b: number): number {
+  switch (show) {
     case "add":
       return a + b;
     case "substract":
