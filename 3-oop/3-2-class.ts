@@ -1,22 +1,27 @@
 {
-    type CoffeeCup = {
-      shots: number;
-      hasMilk: boolean;
-    };
-    const BEANS_GRAMM_PER_SHOW: number = 7;
-    let coffBeans: number = 0;
-    function makeCoffee(shots: number): CoffeeCup {
-      if (coffBeans < shots * BEANS_GRAMM_PER_SHOW) {
+  type CoffeeCup = {
+    shots: number;
+    hasMilk: boolean;
+  };
+
+  class CoffeeMaker {
+    BEANS_GRAMM_PER_SHOT: number = 7;
+    coffBeans: number = 0;
+
+    constructor(coffBeans: number) {
+      this.coffBeans = coffBeans;
+    }
+
+    makeCoffee(shots: number): CoffeeCup {
+      if (this.coffBeans < shots * this.BEANS_GRAMM_PER_SHOT) {
         throw new Error("not enough");
       }
-      coffBeans -= shots * BEANS_GRAMM_PER_SHOW;
+      this.coffBeans -= shots * this.BEANS_GRAMM_PER_SHOT;
       return {
         shots,
         hasMilk: false,
       };
     }
-    coffBeans += 3 * BEANS_GRAMM_PER_SHOW;
-    const coffee = makeCoffee(2);
-    console.log(coffee);
   }
-  
+  const Maker = new CoffeeMaker();
+}
