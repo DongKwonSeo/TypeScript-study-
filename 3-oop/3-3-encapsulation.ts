@@ -27,10 +27,10 @@
     }
 
     makeCoffee(shots: number): CoffeeCup {
-      if (this.coffBeans < shots * this.BEANS_GRAMM_PER_SHOT) {
+      if (this.coffBeans < shots * CoffeeMaker.BEANS_GRAMM_PER_SHOT) {
         throw new Error("not enough");
       }
-      this.coffBeans -= shots * this.BEANS_GRAMM_PER_SHOT;
+      this.coffBeans -= shots * CoffeeMaker.BEANS_GRAMM_PER_SHOT;
       return {
         shots,
         hasMilk: false,
@@ -38,5 +38,33 @@
     }
   }
   const maker = CoffeeMaker.makeMachine(32);
-  //   maker.fillCoffeeBeans
+  maker.fillCoffeeBeans(32);
+
+  //----------------------------------------------//
+  class User {
+    // firstName: string;
+    // lastName: string;
+    // fulName: string;
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`;
+    }
+    private internalAge = 4;
+    get age(): number {
+      return this.internalAge;
+    }
+    set age(num: number) {
+        if(num <0){
+            
+        }
+      this.internalAge = num;
+    }
+
+    constructor(private firstName: string, private lastName: string) {
+      //   this.firstName = firstName;
+      //   this.lastName = lastName;
+    }
+  }
+  const user = new User("rudy", "seo");
+  user.age = 8;
+  console.log(user.fullName);
 }
