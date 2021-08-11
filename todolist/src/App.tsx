@@ -1,8 +1,29 @@
 import React, { FC, useState } from "react";
 import { ChangeEvent } from "react";
 import "./App.css";
+import TodoTask from "./components/TodoTask";
+import { ITask } from "./interfaces";
 
 const App: FC = () => {
+  const [task, setTask] = useState<string>("");
+  const [deadline, setDeadline] = useState<number>(0);
+  const [todoList, setTodolist] = useState<ITask[]>([]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (e.target.name === "task") {
+      setTask(e.target.value);
+    } else {
+      setDeadline(Number(e.target.value));
+    }
+  };
+  const addTask = (): void => {
+    const newTask = { taskName: task, deadline };
+    setTodolist([...todoList, newTask]);
+    setTask("");
+    setDeadline(0);
+  };
+
+ 
   return (
     <div className="App">
       <div className="header">
@@ -11,18 +32,24 @@ const App: FC = () => {
             type="text"
             placeholder="Task.."
             name="task"
+            value={task}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="number"
             name="deadline"
+            value={deadline}
             placeholder="Deadline (in Days)..."
             onChange={handleChange}
           />
         </div>
-        <button>Add Task</button>
+        <button onClick={addTask}>Add Task</button>
       </div>
-      <div className="todoList"></div>
+      <div className="todoList">
+        {todoList.map((task: ITask, key: number) => {
+          return <TodoTask key={key} task={task} />;
+        })}
+      </div>
     </div>
   );
 };
