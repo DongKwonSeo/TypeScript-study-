@@ -37,7 +37,7 @@ body {
 }
 
 .header button {
-  width: 70px;
+  width: 20%;
   height: 87px;
   border: none;
   border-bottom-left-radius: 8px;
@@ -75,9 +75,13 @@ body {
   display: grid;
   place-items: center;
   border: 1px solid white;
-  width: 100%;
+  width: 80%;
   height: 100%;
   font-size: 18px;
   border-right: none;
   background-color: tomato;
+}
+
+button {
+  width: 20%;
 }
