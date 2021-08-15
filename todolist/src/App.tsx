@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import { ChangeEvent } from "react";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import TodoTask from "./components/TodoTask";
 import { ITask } from "./interfaces";
@@ -32,32 +33,36 @@ const App: FC = () => {
   };
 
   return (
-    <div className="App">
-      <div className="header">
-        <div className="inputContainer">
-          <input
-            type="text"
-            placeholder="Task.."
-            name="task"
-            value={task}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="deadline"
-            value={deadline}
-            placeholder="Deadline (in Days)..."
-            onChange={handleChange}
-          />
+    <BrowserRouter>
+      <div className="App">
+        <div className="header">
+          <div className="inputContainer">
+            <input
+              type="text"
+              placeholder="Task.."
+              name="task"
+              value={task}
+              onChange={handleChange}
+            />
+            <input
+              type="number"
+              name="deadline"
+              value={deadline}
+              placeholder="Deadline (in Days)..."
+              onChange={handleChange}
+            />
+          </div>
+          <button onClick={addTask}>Add Task</button>
         </div>
-        <button onClick={addTask}>Add Task</button>
+        <div className="todoList">
+          {todoList.map((task: ITask, key: number) => {
+            return (
+              <TodoTask key={key} task={task} completeTask={completeTask} />
+            );
+          })}
+        </div>
       </div>
-      <div className="todoList">
-        {todoList.map((task: ITask, key: number) => {
-          return <TodoTask key={key} task={task} completeTask={completeTask} />;
-        })}
-      </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
