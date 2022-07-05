@@ -19,7 +19,6 @@
   type keys = keyof Animal; //keyof 쓰면 type 가지고 유니언 타입으로 만들어진다
   const key: keys = "name";
 
-  
   type Person = {
     name: string;
     gender: Animal["gender"];
